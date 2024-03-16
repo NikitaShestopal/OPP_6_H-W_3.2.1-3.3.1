@@ -12,6 +12,7 @@ class Equation:
         print(self)
 
     INF = "infinity" # означає, що в нас нескінченна кількість розвʼязків
+
     def solve(self):
         if self.b == 0:
             if self.c == 0:
@@ -19,21 +20,4 @@ class Equation:
             else: # c != 0
                 return ()
         else:  # b != 0
-            return (-self.c / self.b)
-
-if __name__ == '__main__':
-    e = Equation(9, 4)
-    print(e)
-    print(e.solve())
-
-    e = Equation(0, 4)
-    print(e)
-    print(e.solve())
-
-    e = Equation(0, 0)
-    print(e)
-    print(e.solve())
-
-    e = Equation(5, 0)
-    print(e)
-    print(e.solve())
+            return (-self.c / self.b,)

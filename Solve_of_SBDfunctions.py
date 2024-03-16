@@ -21,21 +21,55 @@ class Solver:
 
     @staticmethod
     def sort_argu(all_comp):
-
+        Null_solutions = []
+        One_solution = []
+        Two_solutions = []
+        Three_solutions = []
+        Four_solutins = []
+        INF_solutions = []
         for i in all_comp:
             if len(i) == 2:
                 e = Equation(*i)
-                print(e)
-                return e.solve()
+                j = e.solve()
+                amount = len(j)
+                if amount == 0:
+                    Null_solutions.append(i)
+                elif amount == 1:
+                    One_solution.append(i)
+                elif j == 'infinity':
+                    INF_solutions.append(i)
             if len(i) == 3:
                 e = QuadraticEquation(*i)
-                print(e)
-                return e.solve()
+                j = e.solve()
+                amount = len(j)
+                if amount == 0:
+                    Null_solutions.append(i)
+                elif amount == 1:
+                    One_solution.append(i)
+                elif amount == 2:
+                    Two_solutions.append(i)
+                elif j == 'infinity':
+                    INF_solutions.append(i)
             if len(i) == 5:
                 k = list(i)
                 k.pop(3)
                 k.pop(1)
                 e = diquadratic(*k)
-                print(e)
-                return e.solve()
+                j = e.solve()
+                amount = len(j)
+                if amount == 0:
+                    Null_solutions.append(i)
+                elif amount == 1:
+                    One_solution.append(i)
+                elif amount == 2:
+                    Two_solutions.append(i)
+                elif amount == 3:
+                    Three_solutions.append(i)
+                elif amount == 4:
+                    Four_solutins.append(i)
+                elif j == 'infinity':
+                    INF_solutions.append(i)
+        ALL_AMOUNT = [Null_solutions, One_solution, Two_solutions, Three_solutions, Four_solutins, INF_solutions]
+        return ALL_AMOUNT
+
 

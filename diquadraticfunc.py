@@ -17,13 +17,3 @@ class diquadratic(QuadraticEquation):
             set_soltions.add(t2)
 
         return tuple(set_soltions)
-
-
-if __name__ == '__main__':
-    e = diquadratic(9,  0,  -18)
-    print(e)
-    print(e.solve())
-
-    e = QuadraticEquation(-1, -2, -3)
-    print(e)
-    print(e.solve())

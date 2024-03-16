@@ -25,38 +25,3 @@ class QuadraticEquation(Equation):
                 x1 = (-self.b + d_sqr) / (2 * self.a)
                 x2 = (-self.b - d_sqr) / (2 * self.a)
                 return (x1, x2)
-
-
-if __name__ == '__main__':
-    e = QuadraticEquation(-8,  -5,  46)
-    print(e)
-    print(e.solve())
-
-    e = QuadraticEquation(0,0, 4)
-    print(e)
-    print(e.solve())
-
-    e = QuadraticEquation(0,0, 0)
-    print(e)
-    print(e.solve())
-
-    e = QuadraticEquation(0,5, 0)
-    print(e)
-    print(e.solve())
-
-    e = QuadraticEquation(1, 3, 8)
-    print(e)
-    print(e.solve())
-
-    e = QuadraticEquation(1, 4, 4)
-    print(e)
-    print(e.solve())
-
-    e = QuadraticEquation(1, -3, 2)
-    print(e)
-    print(e.solve())
-
-    e = QuadraticEquation(2, -6, 4)
-    print(e)
-    print(e.solve())
-
