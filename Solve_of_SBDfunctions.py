@@ -44,9 +44,11 @@ class Solver:
             2: [],
             3: [],
             4: [],
-            'infinity': []
+            'infinity': [],
         }
 
+        maxs = float()
+        mins = float()
         for i in all_comp:
             if len(i) == 2:
                 m = Solver.solve_equation(i)
@@ -61,24 +63,10 @@ class Solver:
             elif m == 'infinity':
                 ALL_AMOUNT['infinity'].append(i)
 
-        return ALL_AMOUNT
-
-    @staticmethod
-    def find_min_max_solutions(all_comp):
-        maxs = float()
-        mins = float()
-        for i in all_comp:
-            if len(i) == 2:
-                j = Solver.solve_equation(i)
-            elif len(i) == 3:
-                j = Solver.solve_quadratic_equation(i)
-            elif len(i) == 5:
-                j = Solver.solve_diquadratic_equation(i)
-
-            if j == 'infinity':
+            if m == 'infinity':
                 continue
             else:
-                for k in j:
+                for k in m:
                     if isinstance(k, complex):
                         continue  # Skip infinity or complex solutions
                     elif float(k) > maxs:
@@ -86,4 +74,5 @@ class Solver:
                     elif float(k) < mins:
                         mins = float(k)
 
-        return (mins, maxs)
+        return ALL_AMOUNT, mins, maxs
+
