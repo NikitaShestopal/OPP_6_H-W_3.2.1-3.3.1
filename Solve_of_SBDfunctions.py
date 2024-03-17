@@ -18,58 +18,72 @@ class Solver:
 
         return all_comp
 
+    @staticmethod
+    def solve_equation(equation):
+        e = Equation(*equation)
+        return e.solve()
+
+    @staticmethod
+    def solve_quadratic_equation(equation):
+        e = QuadraticEquation(*equation)
+        return e.solve()
+
+    @staticmethod
+    def solve_diquadratic_equation(equation):
+        k = list(equation)
+        k.pop(3)
+        k.pop(1)
+        e = diquadratic(*k)
+        return e.solve()
 
     @staticmethod
     def sort_argu(all_comp):
-        Null_solutions = []
-        One_solution = []
-        Two_solutions = []
-        Three_solutions = []
-        Four_solutins = []
-        INF_solutions = []
+        ALL_AMOUNT = {
+            0: [],
+            1: [],
+            2: [],
+            3: [],
+            4: [],
+            'infinity': []
+        }
+
         for i in all_comp:
             if len(i) == 2:
-                e = Equation(*i)
-                j = e.solve()
-                amount = len(j)
-                if amount == 0:
-                    Null_solutions.append(i)
-                elif amount == 1:
-                    One_solution.append(i)
-                elif j == 'infinity':
-                    INF_solutions.append(i)
-            if len(i) == 3:
-                e = QuadraticEquation(*i)
-                j = e.solve()
-                amount = len(j)
-                if amount == 0:
-                    Null_solutions.append(i)
-                elif amount == 1:
-                    One_solution.append(i)
-                elif amount == 2:
-                    Two_solutions.append(i)
-                elif j == 'infinity':
-                    INF_solutions.append(i)
-            if len(i) == 5:
-                k = list(i)
-                k.pop(3)
-                k.pop(1)
-                e = diquadratic(*k)
-                j = e.solve()
-                amount = len(j)
-                if amount == 0:
-                    Null_solutions.append(i)
-                elif amount == 1:
-                    One_solution.append(i)
-                elif amount == 2:
-                    Two_solutions.append(i)
-                elif amount == 3:
-                    Three_solutions.append(i)
-                elif amount == 4:
-                    Four_solutins.append(i)
-                elif j == 'infinity':
-                    INF_solutions.append(i)
-        ALL_AMOUNT = [Null_solutions, One_solution, Two_solutions, Three_solutions, Four_solutins, INF_solutions]
+                m = Solver.solve_equation(i)
+            elif len(i) == 3:
+                m = Solver.solve_quadratic_equation(i)
+            elif len(i) == 5:
+                m = Solver.solve_diquadratic_equation(i)
+
+            amount = len(m)
+            if amount in ALL_AMOUNT:
+                ALL_AMOUNT[amount].append(i)
+            elif m == 'infinity':
+                ALL_AMOUNT['infinity'].append(i)
+
         return ALL_AMOUNT
 
+    @staticmethod
+    def find_min_max_solutions(all_comp):
+        maxs = float()
+        mins = float()
+        for i in all_comp:
+            if len(i) == 2:
+                j = Solver.solve_equation(i)
+            elif len(i) == 3:
+                j = Solver.solve_quadratic_equation(i)
+            elif len(i) == 5:
+                j = Solver.solve_diquadratic_equation(i)
 
+            if j == 'infinity':
+                continue
+            else:
+                for k in j:
+                    if isinstance(k, complex):
+                        continue  # Skip infinity or complex solutions
+                    elif float(k) > maxs:
+                        maxs = float(k)
+                    elif float(k) < mins:
+                        mins = float(k)
+
+        return (mins, maxs)

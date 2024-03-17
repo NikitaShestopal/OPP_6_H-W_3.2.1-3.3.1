@@ -12,4 +12,8 @@ print(f"Solve of the Function with THREE solutions:", Solver.sort_argu(argu)[3])
 
 print(f"Solve of the Function with FOUR solutions:", Solver.sort_argu(argu)[4])
 
-print(f"Solve of the Function with INF solutions:", Solver.sort_argu(argu)[5])
+print(f"Solve of the Function with INF solutions:", Solver.sort_argu(argu)['infinity'])
+
+print("Minimum number of solutions:", Solver.find_min_max_solutions(argu)[0])
+
+print("Maximum number of solutions:", Solver.find_min_max_solutions(argu)[1])
