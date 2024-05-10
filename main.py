@@ -1,6 +1,6 @@
 from Solve_of_SBDfunctions import Solver
 
-argu = Solver.from_input_file("input01.txt")
+argu = Solver.from_input_file("input03.txt")
 
 print(f"Solve of the Function with ZERO solutions:", Solver.sort_argu(argu)[0][0])
 
